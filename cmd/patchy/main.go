@@ -7,22 +7,22 @@ import (
 	"os"
 )
 
-const ExitError = 1
+const ExitErrorCode = 1
 
 func main() {
 
-	patchUsecase := patchy.PatchUsecase{}
+	patcher := patchy.GitCliPatcher{}
 
-	req, err := ParseFlags(os.Args[1:])
+	patchCmd, err := ParseFlags(os.Args[1:])
 	if err != nil {
 		fmt.Printf("usage: <path/to/remote/repo> <origin branch> <target branch>\n")
-		os.Exit(ExitError)
+		os.Exit(ExitErrorCode)
 	}
 
-	patch, err := patchUsecase.Generate(req)
+	patch, err := patcher.Patch(patchCmd)
 	if err != nil {
 		fmt.Printf("failed to generate patch: %s\n", err)
-		os.Exit(ExitError)
+		os.Exit(ExitErrorCode)
 	}
 
 	fmt.Printf(patch.Diff)

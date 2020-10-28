@@ -6,15 +6,9 @@ import (
 	"github.com/go-git/go-git/v5/storage/memory"
 )
 
-type PatchRequest struct {
-	Repository   string
-	OriginBranch string
-	TargetBranch string
-}
+type GoGitPatcher struct{}
 
-type PatchUsecase struct{}
-
-func (u *PatchUsecase) Generate(request PatchRequest) (Patch, error) {
+func (u *GoGitPatcher) Patch(request PatchRequest) (Patch, error) {
 
 	// clone the repo to work with
 	repo, err := git.Clone(memory.NewStorage(), nil, &git.CloneOptions{

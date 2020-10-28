@@ -1,12 +1,18 @@
 package patchy
 
-type Differ interface {
-	Diff(string, string, string) Patch
-}
-
 type Patch struct {
 	RepositoryName string
 	Diff           string
 	TargetBranch   string
 	OriginBranch   string
+}
+
+type Patcher interface {
+	Patch(PatchRequest) (Patch, error)
+}
+
+type PatchRequest struct {
+	Repository   string
+	OriginBranch string
+	TargetBranch string
 }
