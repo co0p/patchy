@@ -1,1 +1,1 @@
-hi
+ hi should be \n a new line
