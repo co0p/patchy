@@ -12,3 +12,7 @@ type PatchRequest struct {
 	OriginBranch string
 	TargetBranch string
 }
+
+func (r PatchRequest) Valid() bool {
+	return len(r.Repository) > 0 && len(r.OriginBranch) > 0 && len(r.TargetBranch) > 0
+}

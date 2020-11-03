@@ -14,9 +14,9 @@ example
 Let's say you have a branch "demo" with 3 commits. 
 
     * c99a019 (origin/master) 
-    | * 8cb9097 (origin/demo) c3
-    | * 9b69853 c2
-    | * 6e1c33b c1
+    | * 8cb9097 (origin/demo) c3    # echo "hi should be \n a new line" > file.txt
+    | * 9b69853 c2                  # echo "hi again" > file2.txt 
+    | * 6e1c33b c1                  # echo "hi" > file.txt 
     |/  
     * ca8ca2e 
     * 81a6ff4 

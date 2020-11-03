@@ -18,9 +18,14 @@ type PatchUsecase struct {
 }
 
 func (u *PatchUsecase) Patch(cmd domain.PatchRequest) (domain.Patch, error) {
+
+	if valid := cmd.Valid(); valid == false {
+		return domain.Patch{}, fmt.Errorf("invalid cmd given")
+	}
+
 	err := u.Git.Clone(cmd.Repository)
 	if err != nil {
-		return domain.Patch{}, fmt.Errorf("failed to checkout repository: %v", err)
+		return domain.Patch{}, fmt.Errorf("failed to clone repository: %v", err)
 	}
 
 	err = u.Git.Checkout(cmd.TargetBranch)
@@ -40,7 +45,7 @@ func (u *PatchUsecase) Patch(cmd domain.PatchRequest) (domain.Patch, error) {
 
 	diff, err := u.Git.Diff(cmd.TargetBranch)
 	if err != nil {
-		return domain.Patch{}, fmt.Errorf("failed to get diff: %v", err)
+		return domain.Patch{}, fmt.Errorf("failed to create diff: %v", err)
 	}
 
 	return domain.Patch{
