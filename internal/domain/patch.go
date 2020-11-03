@@ -1,14 +1,10 @@
-package patchy
+package domain
 
 type Patch struct {
 	RepositoryName string
 	Diff           string
 	TargetBranch   string
 	OriginBranch   string
-}
-
-type Patcher interface {
-	Patch(PatchRequest) (Patch, error)
 }
 
 type PatchRequest struct {
