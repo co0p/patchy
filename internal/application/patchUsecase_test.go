@@ -77,26 +77,26 @@ func NewMockGitOperator(cloneFails, checkoutFails, branchFails, squashFails, dif
 }
 
 func (m MockGitOperator) Clone(s string) error {
-	return ErrorWhenSet(m.fail, "clone")
+	return errWhenSet(m.fail, "clone")
 }
 
 func (m MockGitOperator) Checkout(s string) error {
-	return ErrorWhenSet(m.fail, "checkout")
+	return errWhenSet(m.fail, "checkout")
 }
 
 func (m MockGitOperator) Branch(s string) error {
-	return ErrorWhenSet(m.fail, "branch")
+	return errWhenSet(m.fail, "branch")
 }
 
 func (m MockGitOperator) Squash(s string) error {
-	return ErrorWhenSet(m.fail, "squash")
+	return errWhenSet(m.fail, "squash")
 }
 
 func (m MockGitOperator) Diff(s string) (string, error) {
-	return "", ErrorWhenSet(m.fail, "diff")
+	return "", errWhenSet(m.fail, "diff")
 }
 
-func ErrorWhenSet(failMap map[string]bool, key string) error {
+func errWhenSet(failMap map[string]bool, key string) error {
 	val, ok := failMap[key]
 	if ok && val {
 		return errors.New(key + " failed")
