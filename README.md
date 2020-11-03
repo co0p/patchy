@@ -1,3 +1,5 @@
+![build](https://github.com/co0p/patchy/workflows/build/badge.svg)
+
 patchy
 =======
 
