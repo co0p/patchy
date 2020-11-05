@@ -1,13 +1,13 @@
 ![Test](https://github.com/co0p/patchy/workflows/Test/badge.svg)
 
-patchy
-=======
+patchy - the glorified git diff wrapper  
+=======================================
 
 Patchy allows you to get a unified diff of multiple commits on an origin branch for focus on the changes and not the individual commits.
 
-usage: 
+cli usage: 
     
-    $ patchy <remote repository> <branch> <target branch>
+    $ go run cmd/cli/main.go <remote repository> <branch> <target branch>
     
 
 example
@@ -25,7 +25,7 @@ Let's say you have a branch "demo" with 3 commits.
 * 81a6ff4 
 ```
     
-to get a diff of all changes combined, run `patchy https://github.com/co0p.patchy.git origin/demo origin/master` which will output:
+to get a diff of all changes combined, run `go run cmd/cli/main.go https://github.com/co0p.patchy.git origin/demo origin/master` which will output:
 
 ```diff
 diff --git a/file.txt b/file.txt
