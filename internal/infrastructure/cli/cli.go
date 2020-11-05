@@ -7,7 +7,7 @@ import (
 )
 
 type Patchy struct {
-	Usecase domain.Patcher
+	Usecase domain.PatchUsecase
 }
 
 func (p *Patchy) Run(args []string) (string, error) {

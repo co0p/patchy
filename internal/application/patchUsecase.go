@@ -6,7 +6,7 @@ import (
 )
 
 type GitOperator interface {
-	Clone(string) error
+	Clone(string) (func(), error)
 	Diff(string, string) (string, error)
 }
 
@@ -20,7 +20,9 @@ func (u *PatchUsecase) Patch(cmd domain.PatchRequest) (domain.Patch, error) {
 		return domain.Patch{}, fmt.Errorf("invalid cmd given")
 	}
 
-	err := u.Git.Clone(cmd.Repository)
+	cleanup, err := u.Git.Clone(cmd.Repository)
+	defer cleanup()
+
 	if err != nil {
 		return domain.Patch{}, fmt.Errorf("failed to clone repository: %v", err)
 	}

@@ -48,11 +48,12 @@ index 0000000..401adc2
 running tests
 -------------
 
-to run the unit tests
+to run the unit tests, execute:
     
     $ go test ./... 
     
-to run the integration tests
+to run the integration tests, first create the test repository (```$ cd test && ./testRepository.sh```) and then run
+the tests using the integration tag:
 
     $ go test ./... -tags=integration
 

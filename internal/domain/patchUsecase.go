@@ -1,5 +1,5 @@
 package domain
 
-type Patcher interface {
+type PatchUsecase interface {
 	Patch(PatchRequest) (Patch, error)
 }

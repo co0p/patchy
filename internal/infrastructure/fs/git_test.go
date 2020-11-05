@@ -16,25 +16,27 @@ const (
 )
 
 func TestGitClient_Clone_fails(t *testing.T) {
-	gitClient, _ := fs.NewGitClient()
+	gitClient := fs.GitClient{}
 
-	err := gitClient.Clone("_some_invalid_path")
+	cleanup, err := gitClient.Clone("_some_invalid_path")
 	if err == nil {
 		t.Errorf("expected err not to be nil, got %v", err)
 	}
+	defer cleanup()
 }
 
 func TestGitClient_Clone_succeeds(t *testing.T) {
-	gitClient, _ := fs.NewGitClient()
+	gitClient := fs.GitClient{}
+	cleanup, err := gitClient.Clone(repoPath)
+	defer cleanup()
 
-	err := gitClient.Clone(repoPath)
 	if err != nil {
 		t.Errorf("expected err to be nil, got %v", err)
 	}
 }
 
 func TestGitClient_Diff_same_branch(t *testing.T) {
-	gitClient, _ := fs.NewGitClient()
+	gitClient := fs.GitClient{}
 	gitClient.Clone(repoPath)
 
 	diff, err := gitClient.Diff("master", "master")
@@ -48,7 +50,7 @@ func TestGitClient_Diff_same_branch(t *testing.T) {
 }
 
 func TestGitClient_Diff_different_branches(t *testing.T) {
-	gitClient, _ := fs.NewGitClient()
+	gitClient := fs.GitClient{}
 	gitClient.Clone(repoPath)
 
 	diff, err := gitClient.Diff("origin/master", branchName)

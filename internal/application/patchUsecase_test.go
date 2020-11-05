@@ -70,8 +70,9 @@ func NewMockGitOperator(cloneFails, diffFails bool) MockGitOperator {
 	return MockGitOperator{failureMap}
 }
 
-func (m MockGitOperator) Clone(s string) error {
-	return errWhenSet(m.fail, "clone")
+func (m MockGitOperator) Clone(s string) (func(), error) {
+
+	return func() { /*noop*/ }, errWhenSet(m.fail, "clone")
 }
 
 func (m MockGitOperator) Diff(a, b string) (string, error) {

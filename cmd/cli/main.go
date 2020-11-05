@@ -8,18 +8,11 @@ import (
 	"os"
 )
 
-const ExitErrorCode = 1
-
 func main() {
 
-	gitOperator, err := fs.NewGitClient()
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(ExitErrorCode)
-	}
-
-	patchUsecase := application.PatchUsecase{Git: gitOperator}
-	cli := cli.Patchy{Usecase: &patchUsecase}
+	client := fs.GitClient{}
+	usecase := application.PatchUsecase{Git: &client}
+	cli := cli.Patchy{Usecase: &usecase}
 
 	str, err := cli.Run(os.Args[1:])
 	if err != nil {
