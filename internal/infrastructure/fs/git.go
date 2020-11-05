@@ -31,29 +31,8 @@ func (g *gitClient) Clone(repo string) error {
 	return cmd.Run()
 }
 
-func (g *gitClient) Checkout(branch string) error {
-	command := fmt.Sprintf("git -C %s checkout %s", g.tmpDir, branch)
-	cmdArgs := strings.Split(command, " ")
-	cmd := exec.Command(cmdArgs[0], cmdArgs[1:]...)
-	return cmd.Run()
-}
-
-func (g *gitClient) Branch(name string) error {
-	command := fmt.Sprintf("git -C %s checkout -b %s", g.tmpDir, name)
-	cmdArgs := strings.Split(command, " ")
-	cmd := exec.Command(cmdArgs[0], cmdArgs[1:]...)
-	return cmd.Run()
-}
-
-func (g *gitClient) Squash(originBranch string) error {
-	command := fmt.Sprintf("git -C %s merge --squash %s", g.tmpDir, originBranch)
-	cmdArgs := strings.Split(command, " ")
-	cmd := exec.Command(cmdArgs[0], cmdArgs[1:]...)
-	return cmd.Run()
-}
-
-func (g *gitClient) Diff(targetBranch string) (string, error) {
-	command := fmt.Sprintf("git -C %s diff %s", g.tmpDir, targetBranch)
+func (g *gitClient) Diff(targetBranch string, originBranch string) (string, error) {
+	command := fmt.Sprintf("git -C %s diff %s..%s", g.tmpDir, targetBranch, originBranch)
 	cmdArgs := strings.Split(command, " ")
 	out, err := exec.Command(cmdArgs[0], cmdArgs[1:]...).Output()
 

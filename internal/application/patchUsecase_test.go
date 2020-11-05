@@ -45,11 +45,8 @@ func Test_PatchUsecase_fails_given_failingGitOperation(t *testing.T) {
 		description     string
 		failingOperator application.GitOperator
 	}{
-		{"clone fails", NewMockGitOperator(true, false, false, false, false)},
-		{"checkout fails", NewMockGitOperator(false, true, false, false, false)},
-		{"branch fails", NewMockGitOperator(false, false, true, false, false)},
-		{"squash fails", NewMockGitOperator(false, false, false, true, false)},
-		{"diff fails", NewMockGitOperator(false, false, false, false, true)},
+		{"clone fails", NewMockGitOperator(true, false)},
+		{"diff fails", NewMockGitOperator(false, true)},
 	}
 
 	for _, tt := range cases {
@@ -66,12 +63,9 @@ type MockGitOperator struct {
 	fail map[string]bool
 }
 
-func NewMockGitOperator(cloneFails, checkoutFails, branchFails, squashFails, diffFails bool) MockGitOperator {
+func NewMockGitOperator(cloneFails, diffFails bool) MockGitOperator {
 	var failureMap = make(map[string]bool)
 	failureMap["clone"] = cloneFails
-	failureMap["checkout"] = checkoutFails
-	failureMap["branch"] = branchFails
-	failureMap["squash"] = squashFails
 	failureMap["diff"] = diffFails
 	return MockGitOperator{failureMap}
 }
@@ -80,19 +74,7 @@ func (m MockGitOperator) Clone(s string) error {
 	return errWhenSet(m.fail, "clone")
 }
 
-func (m MockGitOperator) Checkout(s string) error {
-	return errWhenSet(m.fail, "checkout")
-}
-
-func (m MockGitOperator) Branch(s string) error {
-	return errWhenSet(m.fail, "branch")
-}
-
-func (m MockGitOperator) Squash(s string) error {
-	return errWhenSet(m.fail, "squash")
-}
-
-func (m MockGitOperator) Diff(s string) (string, error) {
+func (m MockGitOperator) Diff(a, b string) (string, error) {
 	return "", errWhenSet(m.fail, "diff")
 }
 

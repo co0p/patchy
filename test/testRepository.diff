@@ -1,0 +1,14 @@
+diff --git a/branch.txt b/branch.txt
+new file mode 100644
+index 0000000..80858c1
+--- /dev/null
++++ b/branch.txt
+@@ -0,0 +1 @@
++branch
+diff --git a/branch2.txt b/branch2.txt
+new file mode 100644
+index 0000000..34d1da7
+--- /dev/null
++++ b/branch2.txt
+@@ -0,0 +1 @@
++branch2

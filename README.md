@@ -43,3 +43,16 @@ index 0000000..401adc2
 @@ -0,0 +1 @@
 +hi again
 ```
+
+
+running tests
+-------------
+
+to run the unit tests
+    
+    $ go test ./... 
+    
+to run the integration tests
+
+    $ go test ./... -tags=integration
+
