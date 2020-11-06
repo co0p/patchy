@@ -4,6 +4,25 @@ REPO_NAME=testRepository
 BRANCH_NAME=testBranch
 
 echo "************************************"
+echo "*******  CONFIGURE GIT  *******"
+echo "************************************"
+
+GIT_EMAIL=`git config --get user.email`
+
+if [ -z "$GIT_EMAIL" ]
+then
+    echo "setting user.email"
+    git config --global user.email "you@example.com"
+fi
+
+GIT_NAME=`git config --get user.name`
+if [ -z "$GIT_NAME" ]
+then
+      echo "setting user.name"
+      git config --global user.name "Your Name"
+fi
+
+echo "************************************"
 echo "*******  CREATING TEST REPO  *******"
 echo "************************************"
 
