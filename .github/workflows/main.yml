@@ -11,8 +11,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Tests
-        run: go test ./...
+        run: go test ./... -cover
       - name: Integration Tests
         run: |
           cd test && ./testRepository.sh && cd ..
-          go test ./... -tags=integration
+          go test ./... -tags=integration -cover
