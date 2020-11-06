@@ -14,5 +14,5 @@ jobs:
         run: go test ./...
       - name: Integration Tests
         run: |
-          cd test && ./testRepository && cd ..
+          cd test && ./testRepository.sh && cd ..
           go test ./... -tags=integration
