@@ -50,10 +50,10 @@ running tests
 
 to run the unit tests, execute:
     
-    $ go test ./... 
+    $ go test ./... -cover 
     
 to run the integration tests, first create the test repository (```$ cd test && ./testRepository.sh```) and then run
 the tests using the integration tag:
 
-    $ go test ./... -tags=integration
+    $ go test ./... -tags=integration -cover
 
