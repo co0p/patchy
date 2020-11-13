@@ -4,8 +4,6 @@ on:
 
 name: CI
 jobs:
-  strategy:
-    max-parallel: 1
   test:
     runs-on: ubuntu-latest
     steps:
@@ -22,6 +20,7 @@ jobs:
           cd test && ./testRepository.sh && cd ..
           go test ./... -tags=integration -cover
   docker:
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       -
@@ -48,6 +47,7 @@ jobs:
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
   heroku:
+    needs: [test, docker]
     runs-on: ubuntu-latest
     steps:
       -
