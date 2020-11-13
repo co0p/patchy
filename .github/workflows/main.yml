@@ -4,6 +4,8 @@ on:
 
 name: CI
 jobs:
+  strategy:
+    max-parallel: 1
   test:
     runs-on: ubuntu-latest
     steps:
