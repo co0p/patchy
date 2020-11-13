@@ -59,9 +59,9 @@ jobs:
         name: Push to registry
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:push -a appname web
+        run: heroku container:push -a co0p-patchy web
       -
         name: Release app
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:release -a appname web
+        run: heroku container:release -a co0p-patchy web
