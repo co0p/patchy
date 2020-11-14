@@ -1,4 +1,4 @@
-![Test](https://github.com/co0p/patchy/workflows/Test/badge.svg)
+![CI](https://github.com/co0p/patchy/workflows/CI/badge.svg)
 
 patchy - the glorified git diff wrapper  
 =======================================
