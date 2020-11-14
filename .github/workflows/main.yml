@@ -61,10 +61,10 @@ jobs:
       -
         name: tagging and pushing container to heroku registry
         uses: docker/login-action@v1
-          with:
-            registry: registry.heroku.com
-            username: _
-            password: ${{ secrets.HEROKU_API_KEY }}
+        with:
+          registry: registry.heroku.com
+          username: _
+          password: ${{ secrets.HEROKU_API_KEY }}
         run: |
           docker tag co0p/patchy:latest registry.heroku.com/co0p-patch/web
           docker push registry.heroku.com/co0p-patch/web
