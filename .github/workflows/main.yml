@@ -47,7 +47,7 @@ jobs:
 #        name: Image digest
 #        run: echo ${{ steps.docker_build.outputs.digest }}
   heroku:
-    needs: [test, docker]
+#    needs: [test, docker]
     runs-on: ubuntu-latest
     steps:
       -
