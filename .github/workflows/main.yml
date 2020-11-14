@@ -70,8 +70,8 @@ jobs:
       -
         name: tagging and pushing container to heroku registry
         run: |
-          docker tag ghcr.io/co0p/patchy:latest registry.heroku.com/co0p-patch/web
-          docker push registry.heroku.com/co0p-patch/web
+          docker tag ghcr.io/co0p/patchy:latest registry.heroku.com/co0p-patchy/web
+          docker push registry.heroku.com/co0p-patchy/web
       -
         name: create a new heroku release for the docker image
         env:
